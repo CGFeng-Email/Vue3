@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <h3>输入关键词：{{searchVal}}</h3>
+        <!-- trim:去除空格，空白字符 -->
+        <input v-model.trim="searchVal">
+        <button @click="seeSearchVal">查看提交数据</button>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                searchVal: ''
+            }
+        },
+        methods: {
+            seeSearchVal() {
+                console.log(this.searchVal);
+            }
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

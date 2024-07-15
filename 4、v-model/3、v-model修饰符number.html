@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <h3>关键词1：{{searchVal1}}</h3>
+        <input v-model="searchVal1" />
+        <button @click="seeType1">查看提交数据类型</button>
+        <h3>关键词2：{{searchVal2}}</h3>
+        <input v-model.number="searchVal2" />
+        <button @click="seeType2">查看提交数据类型</button>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                searchVal1: '',
+                searchVal2: '',
+            }
+        },
+        methods: {
+            // 查看搜索关键词的数据类型, 任何v-model绑定的数据，不管默认值或者输入值是否是number，赋值时都会进行隐式转换成string
+            seeType1() {
+                console.log(typeof this.searchVal);
+            },
+            // 都会转换成数字类型
+            seeType2() {
+                console.log(typeof this.searchVal2);
+            }
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

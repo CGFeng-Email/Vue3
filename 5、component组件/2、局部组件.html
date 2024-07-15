@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <Component-a></Component-a>
+    </div>
+
+    <template id="tmp">
+        自定义组件
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    // 组件
+    const ComponentA = {
+        template: '#tmp'
+    }
+
+    const obj = {
+        components: {
+            // key: 组件名称
+            // value: 组件对象
+            ComponentA: ComponentA
+        },
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

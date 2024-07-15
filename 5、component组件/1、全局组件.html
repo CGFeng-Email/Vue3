@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <component-a></component-a>
+    </div>
+
+    <template id="tmp">
+        <h3>全局组件</h3>
+        <input type="text" v-model="searchVal">
+        <button @click="submit">提交</button>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        data() {
+            return {
+                
+            }
+        }
+    }
+    const app = Vue.createApp(obj);
+
+    app.component('component-a', {
+        template: '#tmp',
+        data() {
+            return {
+                searchVal: ''
+            }
+        },
+        methods: {
+            submit() {
+                console.log(this.searchVal);
+            }
+        }
+    })
+
+    app.mount('#app')
+</script>
+
+</html>
