@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <!-- 对象语法：{active: boolean} -->
+        <div :class="{active: isActive}">对象语法：{active: boolean}</div>
+        <!-- 对象语法，多个键值对 -->
+        <div :class="{active: isActive, title: true}">对象语法，多个键值对</div>
+        <!-- 对象语法，默认的class和动态的class -->
+        <div class="abc data" :class="{active: isActive, title: true}">对象语法，默认的class和动态的class</div>
+        <!-- 对象语法，将对象放到一个单独的属性中 -->
+        <div :class="classObj">对象语法，将对象放到一个单独的属性中</div>
+        <!-- 对象语法，将对象放到一个methods方法中 -->
+        <div :class="getClassObj()">对象语法，将对象放到一个methods方法中</div>
+        <!-- 对象语法，将对象放到一个computed方法中 -->
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                isActive: true,
+                classObj: {
+                    isActive: true,
+                    title: true
+                }
+            }
+        },
+        methods: {
+            getClassObj() {
+                return {
+                    isActive: true,
+                    title: true
+                }
+            }
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

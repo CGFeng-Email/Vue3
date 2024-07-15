@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <!-- 动态绑定属性名，属性值 -->
+        <div :[name]="nameVlaue">hello world</div>
+        <!-- 动态绑定属性对象 -->
+        <div v-bind="dataObj">hello world</div>
+        <!-- 动态绑定属性，语法糖 -->
+        <div :="dataObj">hello world</div>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                name: 'data',
+                nameVlaue: 'abc',
+                dataObj: {
+                    title: 'abc',
+                    age: 18
+                }
+            }
+        },
+        methods: {
+
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

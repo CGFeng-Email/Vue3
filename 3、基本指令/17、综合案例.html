@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 6px 20px;
+        }
+
+        button {
+            margin: 0 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <table border="1px"> 
+            <thead>
+                <th>序号</th>
+                <th>书籍名称</th>
+                <th>出版日期</th>
+                <th>价格</th>
+                <th>购买数量</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in list" :key="item.name">
+                    <td>{{index + 1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.date}}</td>
+                    <td>{{formatPrice(item.price)}}</td>
+                    <td>
+                        <button :disabled="item.count <= 1 ? true : false" @click="decrement($event, index)">-</button>
+                        {{item.count}}
+                        <button @click="increment($event, index)">+</button>
+                    </td>
+                    <td @click="remove(index)">移除</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>总价：{{formatPrice(totalPrice)}}</h3>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                list: [
+                    {
+                        name: '算法导论',
+                        date: '2006-10',
+                        price: 10,
+                        count: 1,
+                    },
+                    {
+                        name: '编程艺术',
+                        date: '2007-10',
+                        price: 20,
+                        count: 1,
+                    },
+                    {
+                        name: '编程珠玑',
+                        date: '2008-10',
+                        price: 30,
+                        count: 1,
+                    },
+                    {
+                        name: '代码大全',
+                        date: '2008-10',
+                        price: 40,
+                        count: 1,
+                    },
+                ]
+            }
+        },
+        computed: {
+            // 总价格, 随时会发生改变，多处地方调用,数值发生改变会自动重新运算
+            totalPrice() {
+                let priceNumber = 0;
+                for (let item of this.list) {
+                    priceNumber += item.count * item.price;
+                }
+                return priceNumber;
+            }
+        },
+        methods: {
+            // 加
+            decrement(event, index) {
+                this.list[index].count--;
+            },
+            // 减
+            increment(event, index) {
+                this.list[index].count++;
+            },
+            // 给价格前面添加价格符号
+            formatPrice(item) {
+                return '￥' + item
+            },
+            // 移除
+            remove(index) {
+                this.list.splice(index, 1)
+            }
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

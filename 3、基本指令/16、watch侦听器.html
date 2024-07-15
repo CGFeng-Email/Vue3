@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <h3>科比信息</h3>
+        <ul>
+            <li v-for="(item,key,index) in info">{{key}} - {{item}}</li>
+        </ul>
+        <h3>参数</h3>
+        <ul>
+            <li v-for="(item,key,index) in params">{{key}} - {{item}}</li>
+        </ul>
+        <h4>{{message}}</h4>
+        <button @click="editBtn">改变</button>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!-- watch用法: {[key:string]: string | Function | Object | Array} -->
+<!-- 默认情况下，侦听器只能监听数据本身的改变 -->
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                message: 'Hello World',
+                params: {
+                    size: 1,
+                    id: 100
+                },
+                info: {
+                    name: 'kebo',
+                    age: 18
+                },
+                list: [
+                    {
+                        id: 0,
+                        title: '菊花茶'
+                    },
+                    {
+                        id: 1,
+                        title: '冰红茶'
+                    }
+                ]
+            }
+        },
+
+        watch: {
+            // 语法糖写法 监听不到内部属性的变化
+            params(newVal, oldVal) {
+                console.log('params', 'newVal', newVal, 'oldVal', oldVal);
+            },
+
+            // 监听对象的属性
+            'info.name'(newVal, oldVal) {
+                console.log('info.name', 'newVal', newVal, 'oldVal', oldVal);
+            },
+
+            // 原生写法
+            info: {
+                handler: function (newVal, oldVal) {
+                    console.log('原生写法', 'newVal', newVal, 'oldVal', oldVal);
+                },
+                deep: true, // 深度侦听
+                immediate: true // 立即执行
+            },
+
+            // 监听数组
+            list: {
+                handler: function (newVal, oldVal) {
+
+                },
+                deep: true
+            }
+
+            // 回调数组，会被逐一调用
+            // watchList: ['message', function params(newVal, oldVal) {
+            //     console.log('newVal', newVal, 'oldVal', oldVal);
+            // }, function info(newVal, oldVal) {
+            //     console.log('newVal', newVal, 'oldVal', oldVal);
+            // }]
+        },
+        created() {
+            // this.$watch() 有返回值
+            const unwatch = this.$watch('message', function (newVal, oldVal) {
+                console.log('message', 'newVal:', newVal, 'oldVal:', oldVal);
+            },
+                {
+                    deep: true, 
+                    immediate: true
+                }
+            )
+
+            // 调用返回值会结束监听函数
+        },
+        methods: {
+            editBtn() {
+                this.info.name = 'james';
+                this.message = this.message.split(' ').reverse().join(' ');
+            }
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

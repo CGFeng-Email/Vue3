@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .div {
+        width: 100px;
+        height: 100px;
+        background: pink;
+    }
+</style>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <!-- v-on的修饰符
+        .stop 调用event.stopPropagation() 阻止冒泡
+        .prevent 调用event.preventDefault() 阻止默认行为
+        .capture 添加事件侦听器时使用 capture模式
+        .self 只当事件是从侦听器绑定的元素本身键触发时才触发回调
+        .keyup 仅当事件是从特点键触发时才触发回调
+        .once 只触发一次回调
+        .left 只当点击鼠标左键时触发
+        .right 只当点击鼠标右键时触发
+        .middle 只当点击鼠标中间时触发
+        .passive - {passive: true} 模式添加侦听器 -->
+
+        <!-- 绑定点击事件 -->
+        <button v-on:click="btnClick">按钮</button>
+        <!-- 绑定移动事件 -->
+        <div class="div" v-on:mousemove="mousemove"></div>
+
+        <!-- 语法糖 -->
+        <!-- 绑定点击事件 -->
+        <button @click="btnClick">按钮</button>
+        <!-- 绑定移动事件 -->
+        <div class="div" @mousemove="mousemove"></div>
+
+        <!-- 绑定表达式 -->
+        <button @click="count++">{{count}}</button>
+
+        <!-- 绑定事件对象 -->
+        <button v-on="{click: btnClick, mousemove: mousemove}">事件对象</button>
+        <button @="{click: btnClick, mousemove: mousemove}">事件对象</button>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                count: 100
+            }
+        },
+        methods: {
+            btnClick() {
+                console.log('点击');
+            },
+            mousemove() {
+                console.log('移动');
+            }
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

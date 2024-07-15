@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <!-- 拼接字段名 -->
+        <!-- 计算属性 -->
+       <h3>{{fullName1}}</h3>
+       <h3>{{fullName1}}</h3>
+       <h3>{{fullName1}}</h3>
+       <!-- 方法 -->
+       <h3>{{getFullName()}}</h3>
+       <h3>{{getFullName()}}</h3>
+       <h3>{{getFullName()}}</h3>
+       <!-- 修改字段名 -->
+       <button @click="editName">修改</button>
+       <!-- 判断展示对应字段 -->
+       <div>{{result}}</div>
+       <!-- 翻转字段 -->
+       <div>{{reverseMessage}}</div>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    // 建议：任何包含响应式数据的复杂逻辑，你都应该使用计算属性
+    // 优势1：计算属性被混入到组件实例中，所有getter和setter的this上下文自动绑定为组件实例
+    // 优势2：计算属性是有缓存的，如果被dom同时多处调用，计算属性中的运算只会执行一次，如果数据发生改变才会重新运行
+    // computed用法：{[key: string]: Function | {get: Function, set: Function}}
+
+
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+               firstName: 'kebo',
+               lastName: 'james',
+               score: 80,
+               message: 'Hello World'
+            }
+        },
+        computed: {
+            // 拼接字段
+            fullName1() {
+                console.log('fullName');
+                return this.firstName + '-' + this.lastName;
+            },
+            fullName2: {
+                // 获取
+                get: function() {
+                    return this.firstName + '-' + this.lastName;
+                },
+                // 设置 参数1：新数据，参数2：旧数据
+                set: function (newValue, oldValue) {
+                    
+                }
+            },
+            // 三元表达式
+            result() {
+                return this.score >= 60 ? '及格' : '不及格'
+            },
+            // 对数据进行逻辑处理
+            reverseMessage() {
+                return this.message.split(' ').reverse().join(' ');
+            }
+        },
+        methods: {
+            // 方法 
+            getFullName() {
+                console.log('getFullName');
+                return this.firstName + '-' + this.lastName;
+            },
+            editName() {
+                this.firstName = 'courie'
+            }
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

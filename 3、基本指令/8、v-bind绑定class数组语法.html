@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <!-- 默认和动态语法 -->
+        <div :class="['abc', title]"></div>
+        <!-- 三元表达式 -->
+        <div :class="['abc', title, isActive ? 'active' : '']"></div>
+        <!-- 对象语法 -->
+        <div :class="['abc', title, {active: isActive}]"></div>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                title: 'cba',
+                isActive: true
+            }
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

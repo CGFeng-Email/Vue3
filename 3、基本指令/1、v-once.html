@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="tmp">
+        <h3>数值：{{count}}</h3>
+        <div v-once>只会渲染一次，后期的数据更新，不会再刷新，包括内部的子元素也是 {{count}}</div>
+        <button @click="deCount">-1</button>
+        <button @click="inCount">+1</button>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        template: '#tmp',
+        data() {
+            return {
+                count: 100
+            }
+        },
+        methods: {
+            deCount() {
+                this.count++;
+            },
+            inCount() {
+                this.count--;
+            }
+        }
+    }).mount('#app');
+</script>
+
+</html>

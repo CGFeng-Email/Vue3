@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <!-- 遍历时使用template元素，是不会被浏览器渲染的 -->
+        
+        <!-- 遍历数组 -->
+        <ul>
+            <li v-for="(item,index) in list" :key="item">{{item}}</li>
+        </ul>
+
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(val, key, index) in obj" :key="item">{{index}} - {{key}} - {{val}}</li>
+        </ul>
+
+        <!-- 遍历数字 -->
+        <ul>
+            <li v-for="(item, index) in 10" :key="itme">{{item}}</li>
+        </ul>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                list: ['a', 'b', 'c'],
+                obj: { name: 'kebo', age: 18, height: 188 }
+            }
+        },
+        methods: {
+
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>

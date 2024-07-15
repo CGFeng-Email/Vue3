@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script type="x-template" id="tmp">
+    <h3>{{title}}</h3>
+    <h4>{{count}}</h4>
+    <button @click="decount">-1</button>
+    <button @click="incount">+1</button>
+</script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                title: '计算器案例',
+                count: 100
+            }
+        },
+        methods: {
+            decount() {
+                this.count--;
+            },
+            incount() {
+                this.count++;
+            }
+        }
+    }
+
+    Vue.createApp(obj).mount('#app');
+</script>
+
+</html>

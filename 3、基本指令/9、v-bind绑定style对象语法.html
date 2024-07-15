@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <template id="tmp">
+        <!-- 对象语法，驼峰写法 -->
+        <div :style="{color: titleColor, 'font-size': '30px'}">hello world</div>
+        <!-- 对象语法，驼峰写法 -->
+        <div :style="{color: titleColor, 'fontSize': '40px'}">hello world</div>
+        <!-- 对象语法，驼峰语法，拼接属性 -->
+        <div :style="{color: titleColor, 'fontSize': textSize + 'px', }">hello world</div>
+        <!-- 绑定属性 -->
+        <div :style="styleObj">hello world</div>
+        <!-- 绑定方法 -->
+        <div :style="getStyle()">hello world</div>
+    </template>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const obj = {
+        template: '#tmp',
+        data() {
+            return {
+                titleColor: 'red',
+                textSize: 60,
+                styleObj: {
+                    'font-size': '24px',
+                    'font-weight': '600',
+                    'background': 'red'
+                }
+            }
+        },
+        methods: {
+            getStyle() {
+                return {
+                    'font-size': '24px',
+                    'font-weight': '600',
+                    'background': 'blue',
+                    'color': '#fff'
+                }
+            }
+        }
+    }
+    Vue.createApp(obj).mount('#app')
+</script>
+
+</html>
