@@ -12,7 +12,7 @@ export default {
     components: {
         Home
     },
-    // 提供，不使用对象而是才用函数的写法，解决this指向的问题，可以直接this到data
+    // 父组件提供，不使用对象而是才用函数的写法，解决this指向的问题，可以直接this到data
     provide() {
         return {
             name: 'kebo',
