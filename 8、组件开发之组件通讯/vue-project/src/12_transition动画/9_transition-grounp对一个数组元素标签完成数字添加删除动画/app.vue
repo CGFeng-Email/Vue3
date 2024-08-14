@@ -19,7 +19,6 @@
 // 导入lodash洗牌插件
 import _ from 'lodash';
 export default {
-
     data() {
         return {
             list: [0, 1, 2, 3, 4, 5]

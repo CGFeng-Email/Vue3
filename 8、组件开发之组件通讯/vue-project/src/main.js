@@ -1,5 +1,11 @@
-import { createApp } from 'vue'
-import App from './12_transition动画/10_列表交错交替动画/app.vue';
-import 'animate.css';
+import { createApp } from "vue";
+// 根组件
+import App from "./15_composition-api/4_ref_reactive复杂数据时/app.vue";
 
-createApp(App).mount('#app')
+// 导入全局混入属性
+// import mixinData from "./14_mixin全局混入/mixin/mixin.js";
+import "animate.css";
+
+const app = createApp(App);
+// app.mixin(mixinData);
+app.mount("#app");
