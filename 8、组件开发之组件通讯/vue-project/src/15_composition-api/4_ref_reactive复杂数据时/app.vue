@@ -1,7 +1,7 @@
 <template>
     <div>
         <button @click="increment">+1</button>
-    
+
         <div>
             counter: {{ counter }}
         </div>
@@ -25,6 +25,7 @@ import { reactive, ref } from 'vue';
 export default {
     setup() {
         let counter = ref(0);
+
         let info = {
             counter
         }
@@ -47,7 +48,7 @@ export default {
             info,
             obj,
             reactiveData,
-            increment
+            increment,
         }
     }
 
