@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 export default function (app) {
 
-    // 创建自定义组件：format-time
+    // 创建自定义指令：format-time
     app.directive("format-time", {
         mounted(el, bindings) {
             // el.textContent：获取到el数据上下文
@@ -15,7 +15,6 @@ export default function (app) {
             // 数字类型无法直接通过length获取长度
             // 如果长度是10那就是秒数
             if (textContent.length == 10) {
-                console.log('123');
                 // 统一使用豪秒数来处理时间戳，秒数：10位，毫秒13位
                 timeNumber = timeNumber * 1000;
             }
