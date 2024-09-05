@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 // 根组件
-import App from "./22_vuex状态管理工具/1_基本使用/app.vue";
+import App from "./22_vuex状态管理工具/1_mutation基本使用mapMutation辅助函数/app.vue";
 
 // 导入全局混入属性
 import mixinData from "./14_mixin全局混入/mixin/mixin.js";
@@ -12,10 +12,10 @@ import totalDirectives from "./19_自定义指令时间戳解析/directives";
 import PluginsObject from './20_插件Object/plugins/plugins_object.js';
 
 // 导入router
-import router from './22_vuex状态管理工具/1_基本使用/router/index';
+import router from './22_vuex状态管理工具/1_mutation基本使用mapMutation辅助函数/router/index';
 
 // 导入vuex
-import store from './22_vuex状态管理工具/1_基本使用/store/index';
+import store from './22_vuex状态管理工具/1_mutation基本使用mapMutation辅助函数/store/index';
 
 import "animate.css";
 
