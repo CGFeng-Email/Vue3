@@ -4,19 +4,23 @@
 
         <h4>counter: {{ $store.state.counter }}</h4>
 
-        <button @click="decrement">-1</button>
-        <button @click="increment">+1</button>
+        <button @click="decrement({ id: 10, name: 'kobe' })">-1</button>
+        <button @click="increment({ id: 20, name: 'curry' })">+1</button>
     </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
     methods: {
-        decrement() {
-            this.$store.commit('decrement')
-        },
-        increment() {
-            this.$store.commit('increment')
+        // 相当于做了这个： this.$store.commit('increment')
+        ...mapMutations(['decrement', 'increment'])
+    },
+    setup() {
+        const storeMutation = mapMutations(['decrement', 'increment'])
+        return {
+            ...storeMutation
         }
     }
 }

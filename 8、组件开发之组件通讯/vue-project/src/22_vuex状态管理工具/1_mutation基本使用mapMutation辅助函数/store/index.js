@@ -18,9 +18,11 @@ const store = createStore({
     // 调用方式通过commit提交的方式：this.$store.commit('increment')
     mutations: {
         increment(state, payload) {
+            console.log('payload', payload);
             state.counter++
         },
         decrement(state, payload) {
+            console.log('payload', payload);
             state.counter--
         }
     },
