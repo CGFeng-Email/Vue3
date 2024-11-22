@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 // 根组件
-import App from "./22_vuex状态管理工具/4_actions基本使用以及mapActions辅佐函数/app.vue";
+import App from "./24_nextTick/app.vue";
 
 // 导入全局混入属性
 import mixinData from "./14_mixin全局混入/mixin/mixin.js";
